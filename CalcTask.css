@@ -1,0 +1,13 @@
+
+input[name=currency]
+	 {
+	 background-color:WhiteSmoke;
+     width:200px;
+	 }
+input[name=ammount]
+	 {
+	 background-color:White;
+     width:200px;
+	 }
+	 
+	 
