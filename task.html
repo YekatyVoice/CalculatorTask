@@ -1,0 +1,88 @@
+<!-- Найти API банков рб (нб обязательно) и с их помощью перевести для 4 валют(евро, доллар, рос. рубль, бел. рубль):
+1) деньги во все валюты на сейчас
+2) деньги во все валюты по истории курсов валют-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script>
+            var history = new Object;
+            var currency = new Object;
+            var toWrite = "";
+            var now = new Date;
+            var month;
+            var date;
+            var url;
+            var startDate = new Date;
+            var endDate = new Date;
+            $(document).ready(function(){
+                $.ajax({url:"http://www.nbrb.by/api/exrates/rates?periodicity=0", dataType:"json", success:function(data){//запрос к апи нбрб
+                    currency["BYN"] =[ 1,1,"Белорусский рубль",0]; //апи нбрб не возвращает курс бел рубля к бел рублю, т.к. это бессмысленно, но нам необходимо для унификации исполняемых функций
+                    data.forEach(elem => { //создаем словарь с данными о возможных валютах
+                        currency[elem.Cur_Abbreviation] = [elem.Cur_OfficialRate, elem.Cur_Scale,elem.Cur_Name, elem.Cur_ID];
+                    });
+                    toWrite = "";// создаем строку, чтобы создать на странице необходимые элементы
+                    for(key in currency){
+                        toWrite += key +': <input id="'+key+'" class="curNow" type="text" textalign:"right"> x'+currency[key][1]+" "+currency[key][2]+' <br> <br>'; //инпуты связанные с валютами
+                    };
+                    $("#todayCur").html(toWrite); // печатаем инпуты (начало на строке 25)
+                    if(now.getMonth() < 10) month = "0"+(now.getMonth()+1); //находим текущую дату и представляем ее в необходимом для input date формате
+                    else month = now.getMonth();
+                    if(now.getDate() < 10) date = "0"+now.getDate();
+                    else date = now.getDate();
+                    toWrite = "<input type='date' id='hisStart'  min='2016-01-01' max='"+now.getFullYear()+"-"+month+"-"+date+"'>";// обнуляем toWrite и заносим в него input date для начала отсчета истории
+                    toWrite += "<input type='date'id='hisEnd'  min='2016-01-01' max='"+now.getFullYear()+"-"+month+"-"+date+"'>";//добавляем конец отсчета истории
+                    toWrite +="<select id='chCur'>" //создание селекта для выбора валют
+                    for(key in currency){
+                        if(key != "BYN")toWrite += "<option value='"+currency[key][3]+"'>"+currency[key][1]+" "+currency[key][2]+"</option>" //опции селектора
+                    }
+                    toWrite +="</select>";//конец селектора
+                    toWrite+="<button type='button' id='showCurHistory'>Show currency history</button>";// кнопка "показать" историю изменения курсов валют
+                    toWrite+="<div id='showHistoryCur'></div> </div>";// контейнер для вывода курсов валют
+                    $("#historyCur").html(toWrite); //создаем input date x 2 select для выбора валют и кнопку запуска скрипта по выводу истории (начало заполнения toWrite - 34 строка)
+
+                    $("#showCurHistory").click(function(){
+                        startDate = $("#hisStart").val(); // c input #hisStart получаем дату начала
+                        endDate = $("#hisEnd").val(); // c input #hisEnd получаем дату конца
+                        curId =$("select").val();// с селекта получаем id валюты
+                        url ="http://www.nbrb.by/API/ExRates/Rates/Dynamics/"+curId+"?startDate="+startDate+"&endDate="+endDate; //создаем адресс для запроса к апи
+                        $.getJSON(url,function(data){ // запрос к апи нбрб
+                            //toWrite = curName+"<br> <br>";// тут еще думаю как, для красоты, вывести название валюты
+                            toWrite = "<ul>";// история курсов выводится в списке
+                            data.forEach(element => {
+                                toWrite +="<li>"+element.Date.substring(0,10)+" "+element.Cur_OfficialRate+"</li>";
+                            });
+                            toWrite+= "</ul>"
+                            $("#showHistoryCur").html(toWrite); //печатаем все, что набросали в toWrite на чиная с 53 строки
+                        })
+                    })
+
+                    $("input").keyup(function(){ //функция, которая рассчитывает и выводит все значения для сегодняшних курсов
+                        var cur = $(this).attr("id");
+                        var money = $(this).val() * currency[cur][0];
+                        $(".curNow:not(#"+cur+")").val(function(){
+                            var id =  $(this).attr("id");
+                            return money / currency[id][0];
+                        })
+                    })
+                }})
+                    $("#showToday").click(function(){ //показать меня для сегодняшних курсов и спрятать для истории курсов
+                        $("#todayCur").show();
+                        $("#historyCur").hide();
+
+                    })
+                    $("#showHistory").click(function(){// показать меня для истории курсов и спрятать для сегодняшних
+                        $("#todayCur").hide();
+                        $("#historyCur").show();
+                    })
+            });
+        </script>
+    </head>
+    <body>
+        <button type="button" id="showToday">Show today currencies exchange</button>
+        <button type="button" id="showHistory">Show history of currencies exchange</button><br> <br>
+        <div id="todayCur" hidden></div>
+        <div id="historyCur" hidden>
+    </body>
+</html>
