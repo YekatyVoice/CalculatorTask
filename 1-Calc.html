@@ -3,72 +3,7 @@
    <head>
    <link rel="stylesheet" type="text/css" href="CalcTask.css" />
 	 <script src="jquery-3.4.1.min.js">
-	 </script>	 
-   </head>
-   <body>	
-	 <h2><p align="center">Онлайн конвертер валют</p></h2>
-	   <table  align="center" border=1 frame="box" rules="none" bordercolor="DodgerBlue" CELLPADDING=5>
-	    <caption></caption>
-		 <tr>
-		 <th  colspan=4>
-		     <table>
-			  <th><button type="button" class="b1" id="showToday"><b>Конвертер валют</b></button></th>
-			  <th><button type="button" class="b3"><b>Банки</b></button></th>
-			  <th><button type="button" class="b2" id="showHistory"><b>Дата</b></button></th>
-			 </table>
-		 </th>
-		 </tr>
-	    <tbody>
-		 <tr>
-		   <td><img src="Flag/Belarus.png" width=30></td>
-		   <td><input name="currency" value="BYN - Белорусский рубль" readonly></td>
-		   <td>Br</td>
-		   <td><input id="BYN" class="curNow" type="text" name="ammount" textalign:"rigth"=""></td>
-		   </tr>
-		 <tr>
-		   <td><img src="Flag/United-States.png" width=30></td>
-		   <td><input name="currency" value="USD - Американский доллар" readonly></td>
-		   <td>$</td>
-		   <td><input id="USD" class="curNow" type="text" name="ammount" textalign:"right"=""></td>
-		 </tr>
-		 <tr>
-		   <td><img src="Flag/European-Union.png" width=30></td>
-		   <td><input name="currency" value="EUR - Евро" readonly></td>
-		   <td>€</td>
-		   <td><input id="EUR" class="curNow" type="text" name="ammount" textalign="right"=""></td>
-		 </tr>
-		 <tr>
-		   <td><img src="Flag/Russia.png" width=30></td>
-		   <td><input name="currency" value="RUR - Российский рубль" readonly></td>
-		   <td>₽</td>
-		   <td><input id="RUB" class="curNow"  type="text" name="ammount" textalign="right"=""></td>
-
-		 </tr>
-		 <tr>
-		   <td><img src="Flag/United-Kingdom.png" width=30></td>
-		   <td><input name="currency" value="GBP - Фунт стерлингов" readonly></td>
-		   <td>£</td>
-		   <td><input id="GBP" class="curNow"  type="text" name="ammount" textalign:"right"=""></td>
-		   
-		   <inputtype="text" >
-		 </tr>
-		 <tr>
-		   <td><img src="Flag/China.png" width=30></td>
-		   <td><input name="currency" value="CNY - Юань" readonly></td>
-		   <td>¥ &nbsp</td>
-		   <td><input id="CNY" class="curNow" type="text" name="ammount" textalign="right"></td>
-		 </tr>
-	    </tbody>
-	   </table>
-	   
-	   <!-- Найти API банков рб (нб обязательно) и с их помощью перевести для 4 валют(евро, доллар, рос. рубль, бел. рубль):
-1) деньги во все валюты на сейчас
-2) деньги во все валюты по истории курсов валют-->
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
+	 </script>
         <script>
             var history = new Object;
             var currency = new Object;
@@ -140,14 +75,66 @@
                         $("#historyCur").show();
                     })
             });
-        </script>
-    </head>
-    <body>
+        </script>	 
+   </head>
+   <body>	
+	 <h2><p align="center">Онлайн конвертер валют</p></h2>
+	   <table  align="center" border=1 frame="box" rules="none" bordercolor="DodgerBlue" CELLPADDING=5>
+	    <caption></caption>
+		 <tr>
+		 <th  colspan=4>
+		     <table>
+			  <th><button type="button" class="b1" id="showToday"><b>Конвертер валют</b></button></th>
+			  <th><button type="button" class="b3"><b>Банки</b></button></th>
+			  <th><button type="button" class="b2" id="showHistory"><b>Дата</b></button></th>
+			 </table>
+		 </th>
+		 </tr>
+	    <tbody>
+		 <tr>
+		   <td><img src="Flag/Belarus.png" width=30></td>
+		   <td><input name="currency" value="BYN - Белорусский рубль" readonly></td>
+		   <td>Br</td>
+		   <td><input id="BYN" class="curNow" type="text" name="ammount" textalign:"rigth"=""></td>
+		   </tr>
+		 <tr>
+		   <td><img src="Flag/United-States.png" width=30></td>
+		   <td><input name="currency" value="USD - Американский доллар" readonly></td>
+		   <td>$</td>
+		   <td><input id="USD" class="curNow" type="text" name="ammount" textalign:"right"=""></td>
+		 </tr>
+		 <tr>
+		   <td><img src="Flag/European-Union.png" width=30></td>
+		   <td><input name="currency" value="EUR - Евро" readonly></td>
+		   <td>€</td>
+		   <td><input id="EUR" class="curNow" type="text" name="ammount" textalign="right"=""></td>
+		 </tr>
+		 <tr>
+		   <td><img src="Flag/Russia.png" width=30></td>
+		   <td><input name="currency" value="RUR - Российский рубль" readonly></td>
+		   <td>₽</td>
+		   <td><input id="RUB" class="curNow"  type="text" name="ammount" textalign="right"=""></td>
+
+		 </tr>
+		 <tr>
+		   <td><img src="Flag/United-Kingdom.png" width=30></td>
+		   <td><input name="currency" value="GBP - Фунт стерлингов" readonly></td>
+		   <td>£</td>
+		   <td><input id="GBP" class="curNow"  type="text" name="ammount" textalign:"right"=""></td>
+		   
+		   <inputtype="text" >
+		 </tr>
+		 <tr>
+		   <td><img src="Flag/China.png" width=30></td>
+		   <td><input name="currency" value="CNY - Юань" readonly></td>
+		   <td>¥ &nbsp</td>
+		   <td><input id="CNY" class="curNow" type="text" name="ammount" textalign="right"></td>
+		 </tr>
+	    </tbody>
+	   </table>
         <!--button type="button" id="showToday">Show today currencies exchange</button-->
         <!--button type="button" id="showHistory">Show history of currencies exchange</button><br> <br-->
         <div id="todayCur" hidden></div>
         <div id="historyCur" hidden>
-    </body>
-</html>
    </body>
 </html>
