@@ -21,16 +21,16 @@
                         currency[elem.Cur_Abbreviation] = [elem.Cur_OfficialRate, elem.Cur_Scale,elem.Cur_Name, elem.Cur_ID];
                     });
                     toWrite = "";// создаем строку, чтобы создать на странице необходимые элементы
-                    for(key in currency){
-                        toWrite += key +': <input id="'+key+'" class="curNow" type="text" textalign:"right"> x'+currency[key][1]+" "+currency[key][2]+' <br> <br>'; //инпуты связанные с валютами
-                    };
+                  //  for(key in currency){
+                  //      toWrite += key +': <input id="'+key+'" class="curNow" type="text" textalign:"right"> x'+currency[key][1]+" "+currency[key][2]+' <br> <br>'; //инпуты связанные с валютами
+                  //  };
                     $("#todayCur").html(toWrite); // печатаем инпуты (начало на строке 25)
                     if(now.getMonth() < 10) month = "0"+(now.getMonth()+1); //находим текущую дату и представляем ее в необходимом для input date формате
                     else month = now.getMonth();
                     if(now.getDate() < 10) date = "0"+now.getDate();
                     else date = now.getDate();
                     toWrite = "<input type='date' id='hisStart'  min='2016-01-01' max='"+now.getFullYear()+"-"+month+"-"+date+"'>";// обнуляем toWrite и заносим в него input date для начала отсчета истории
-                    toWrite += "<input type='date'id='hisEnd'  min='2016-01-01' max='"+now.getFullYear()+"-"+month+"-"+date+"'>";//добавляем конец отсчета истории
+         //           toWrite += "<input type='date'id='hisEnd'  min='2016-01-01' max='"+now.getFullYear()+"-"+month+"-"+date+"'>";//добавляем конец отсчета истории
                     toWrite +="<select id='chCur'>" //создание селекта для выбора валют
                     for(key in currency){
                         if(key != "BYN")toWrite += "<option value='"+currency[key][3]+"'>"+currency[key][1]+" "+currency[key][2]+"</option>" //опции селектора
@@ -42,16 +42,16 @@
 
                     $("#showCurHistory").click(function(){
                         startDate = $("#hisStart").val(); // c input #hisStart получаем дату начала
-                        endDate = $("#hisEnd").val(); // c input #hisEnd получаем дату конца
+     //                   endDate = $("#hisEnd").val(); // c input #hisEnd получаем дату конца
                         curId =$("select").val();// с селекта получаем id валюты
-                        url ="http://www.nbrb.by/API/ExRates/Rates/Dynamics/"+curId+"?startDate="+startDate+"&endDate="+endDate; //создаем адресс для запроса к апи
+                        url ="http://www.nbrb.by/API/ExRates/Rates/Dynamics/"+curId+"?startDate="+startDate+"&endDate=" + startDate; //создаем адресс для запроса к апи
                         $.getJSON(url,function(data){ // запрос к апи нбрб
                             //toWrite = curName+"<br> <br>";// тут еще думаю как, для красоты, вывести название валюты
-                            toWrite = "<ul>";// история курсов выводится в списке
-                            data.forEach(element => {
-                                toWrite +="<li>"+element.Date.substring(0,10)+" "+element.Cur_OfficialRate+"</li>";
-                            });
-                            toWrite+= "</ul>"
+           //                 toWrite = "<ul>";// история курсов выводится в списке
+    //                        data.forEach(element => {
+                                toWrite = data.Cur_OfficialRate;
+   //                         });
+                //            toWrite+= "</ul>"
                             $("#showHistoryCur").html(toWrite); //печатаем все, что набросали в toWrite на чиная с 53 строки
                         })
                     })
@@ -65,13 +65,17 @@
                         })
                     })
                 }})
-   //                 $("#showToday").click(function(){ //показать меня для сегодняшних курсов и спрятать для истории курсов
-   //                     $("#todayCur").show();
-   //                     $("#historyCur").hide();
+                    $("#showToday").click(function(){ //показать меня для сегодняшних курсов и спрятать для истории курсов
+                        $("#todayCur").show();
+                        $("#historyCur").hide();
 
-   //                 })
+                    })
                     $("#showHistory").click(function(){// показать меня для истории курсов и спрятать для сегодняшних
                         $("#todayCur").hide();
+                        $("#historyCur").show();
+                    })
+					$("#showHistory").click(function(){// показать меню для истории курсов и спрятать таблицу валют
+                        $("table").hide();
                         $("#historyCur").show();
                     })
             });
@@ -79,8 +83,9 @@
    </head>
    <body>	
 	 <h2><p align="center">Онлайн конвертер валют</p></h2>
-	   <table  align="center" border=1 frame="box" rules="none" bordercolor="DodgerBlue" CELLPADDING=5>
-	    <caption></caption>
+	   <table align="center" background-color="PowderBlue" border=1 frame="box" rules="none" bordercolor="DodgerBlue" CELLPADDING=3>
+	   
+		<caption></caption>
 		 <tr>
 		 <th  colspan=4>
 		     <table>
@@ -114,15 +119,12 @@
 		   <td><input name="currency" value="RUR - x100 Российских рублей" readonly></td>
 		   <td>₽</td>
 		   <td><input id="RUB" class="curNow"  type="text" name="ammount" textalign="right"=""></td>
-
 		 </tr>
 		 <tr>
 		   <td><img src="Flag/United-Kingdom.png" width=30></td>
 		   <td><input name="currency" value="GBP - Фунт стерлингов" readonly></td>
 		   <td>£</td>
 		   <td><input id="GBP" class="curNow"  type="text" name="ammount" textalign:"right"=""></td>
-		   
-		   <inputtype="text" >
 		 </tr>
 		 <tr>
 		   <td><img src="Flag/China.png" width=30></td>
@@ -131,10 +133,12 @@
 		   <td><input id="CNY" class="curNow" type="text" name="ammount" textalign="right"></td>
 		 </tr>
 	    </tbody>
+	   
 	   </table>
         <!--button type="button" id="showToday">Show today currencies exchange</button-->
         <!--button type="button" id="showHistory">Show history of currencies exchange</button><br> <br-->
         <div id="todayCur" hidden></div>
-        <div id="historyCur" hidden>
+        <div id="historyCur" hidden></div>
    </body>
 </html>
+
