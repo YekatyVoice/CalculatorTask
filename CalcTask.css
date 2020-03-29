@@ -1,4 +1,4 @@
-
+ 
 input[name=currency]
 	 {
 	 background-color:WhiteSmoke;
@@ -16,6 +16,7 @@ input[name=ammount]
     color: Black; /* Белые буквы */ 
     font-size: 10pt; /* Размер шрифта в пунктах */
 	width:160px;
+	height: 30px;
    }
 
 .b2 
@@ -24,6 +25,8 @@ input[name=ammount]
     color: Black; /* Белые буквы */ 
     font-size: 10pt; /* Размер шрифта в пунктах */
 	width:160px;
+	height: 30px;
+	 
    }	 
 	 
 .b3 
@@ -32,5 +35,8 @@ input[name=ammount]
     color: Black; /* Белые буквы */ 
     font-size: 10pt; /* Размер шрифта в пунктах */
 	width:160px;
-   } 
-	 
+	height: 30px;
+   }
+   
+td
+   { background: PowderBlue; }
