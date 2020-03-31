@@ -40,3 +40,83 @@ input[name=ammount]
    
 td
    { background: PowderBlue; }
+.center { 
+    text-align: center;
+	
+  }
+ul{
+	font-size: 16px;
+	font-family: 'Orienta', sans-serif;
+	position: relative;
+}
+#hisStart, #hisEnd {
+  width: 260px;
+  height: 30px;
+  color: Black;
+  font-weight: bold;
+  font-family: Arial;
+  text-align: center;
+  font-size: 13px;
+  margin: 5px 10px 10px 10px;
+  border-color: lightgrey;
+  border-width: 2px;
+  border-style: solid;
+  border-color: lightgrey;
+  border-radius: 3px;
+  background: White;
+}
+#hisStart, #hisEnd:hover { background: White; }
+#chCur {
+  width: 260px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  
+  width: 292px;
+  height: 30px;
+  color: Black;
+  text-align: center;
+  border-color: lightgrey;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 3px;
+  background: White;
+}  
+#showCurHistory {
+  position: relative;
+  display: inline-block;
+  width: 260px;
+  font-weight: bold;
+  height: 30px;
+  color: Black;
+  font-size: 13px;
+  text-decoration: none;
+  outline: none;
+  border-width: 2px;
+  border-style: solid;
+  border-color: lightgrey;
+  background: White;
+  transition: 0.2s;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#historyCur {
+text-align: center; 
+	border: 1px solid DodgerBlue;
+	background: Bisque;
+    padding: 10px;
+	margin-left: 620px;
+	margin-right: 620px;
+	margin-top: 20px;
+	position: relative;
+}
+#showHistoryCur{
+  text-align: center;
+  border: 1px solid DodgerBlue;
+  position: relative;
+  padding-right: 20px;
+  display: inline-block;
+  margin-top: 10px;  
+  margin-bottom: 15px;
+  background: White;  
+}
