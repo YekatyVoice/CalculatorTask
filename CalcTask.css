@@ -1,122 +1,162 @@
- 
 input[name=currency]
 	 {
 	 background-color:WhiteSmoke;
-     width:200px;
+     width:250px;
 	 }
 input[name=ammount]
 	 {
 	 background-color:White;
-     width:200px;
+     width:220px;
+	 }
+
+#hisStart, #hisEnd
+	 {
+	 background-color:White;
+	 width:260px;
+	 text-align: center;
+	 }
+.tdDown 
+	 {
+	 vertical-align: bottom; 
 	 }
 	 
-.b1 
+.tdUp 
+	 {
+	 vertical-align: top; 
+	 }
+	 
+	 
+td   {
+     font-family: 'Orienta', sans-serif;
+     }
+	 
+#showToday 
    {
     background: PowderBlue; /* Синий цвет фона */ 
     color: Black; /* Белые буквы */ 
     font-size: 10pt; /* Размер шрифта в пунктах */
-	width:160px;
+	width:198px;
 	height: 30px;
    }
 
-.b2 
+#showHistory 
    {
     background: Bisque; /* Синий цвет фона */ 
     color: Black; /* Белые буквы */ 
     font-size: 10pt; /* Размер шрифта в пунктах */
-	width:160px;
+	width:198px;
 	height: 30px;
 	 
    }	 
 	 
-.b3 
+#showComBank 
    {
-    background: Thistle; /* Синий цвет фона */ 
+    background: Thistle; 
     color: Black; /* Белые буквы */ 
     font-size: 10pt; /* Размер шрифта в пунктах */
-	width:160px;
+	width:198px;
 	height: 30px;
    }
    
-td
-   { background: PowderBlue; }
-.center { 
-    text-align: center;
-	
-  }
+#hisStart, #hisEnd {
+  width: 240px;
+  text-align: center;
+  font-size: 14px;
+  margin: 15px 20px 40px 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: gray;
+  border-radius: 3px;
+
+}
+#hisEnd:hover, #hisStart:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+#todayCur, #tableTodayCur,#table1
+    { 
+	 background: PowderBlue; 
+	 border:1px solid gray;
+	 width: 600px; 
+
+	 }
+#historyCur
+    { 
+	 background: Bisque; 
+	 width: 320px;
+     margin-left: 4px;
+	 display: inline-block;
+	 vertical-align: middle;
+
+	 }	
+#main
+    { 
+	 border:1px solid gray;
+	 width: 602px;
+	 background: Bisque;
+	 }
+	 
+#leftBorder  
+    {
+	 background: Bisque; 
+	 width: 30px;
+	 height: 130px;
+	 display: inline-block;
+	 vertical-align: top;
+     padding-left:15px;
+	 font-family: 'Orienta', sans-serif;
+	 
+	}
+#workButtons
+    {
+	 background: Bisque; 
+	 width: 210px;
+	 height: 200px;
+	 display: inline-block;
+	 vertical-align: top;
+	}
+
+#showCurHistory {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  padding: .5em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
+  margin: 20px 60px 20px 60px;
+}
+#chCur {
+  margin: 20px 20px 20px 20px;
+  width: 150px;
+  color: white;
+  text-align: center;
+  border-color: #FDBE33 #000 #D77206;
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 3px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+}
+
 ul{
 	font-size: 16px;
 	font-family: 'Orienta', sans-serif;
 	position: relative;
 }
-#hisStart, #hisEnd {
-  width: 260px;
-  height: 30px;
-  color: Black;
-  font-weight: bold;
-  font-family: Arial;
-  text-align: center;
-  font-size: 13px;
-  margin: 5px 10px 10px 10px;
-  border-color: lightgrey;
-  border-width: 2px;
-  border-style: solid;
-  border-color: lightgrey;
-  border-radius: 3px;
-  background: White;
+
+#pStyle
+  {
+   font-family: 'Orienta', sans-serif;
+   margin-left: 150px;
+  }
+i {
+	margin-left: 60px;
 }
-#hisStart, #hisEnd:hover { background: White; }
-#chCur {
-  width: 260px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  
-  width: 292px;
-  height: 30px;
-  color: Black;
-  text-align: center;
-  border-color: lightgrey;
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 3px;
-  background: White;
-}  
-#showCurHistory {
-  position: relative;
-  display: inline-block;
-  width: 260px;
-  font-weight: bold;
-  height: 30px;
-  color: Black;
-  font-size: 13px;
-  text-decoration: none;
-  outline: none;
-  border-width: 2px;
-  border-style: solid;
-  border-color: lightgrey;
-  background: White;
-  transition: 0.2s;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#historyCur {
-text-align: center; 
-	border: 1px solid DodgerBlue;
-	background: Bisque;
-    padding: 10px;
-	margin-left: 620px;
-	margin-right: 620px;
-	margin-top: 20px;
-	position: relative;
-}
-#showHistoryCur{
-  text-align: center;
-  border: 1px solid DodgerBlue;
-  position: relative;
-  padding-right: 20px;
-  display: inline-block;
-  margin-top: 10px;  
-  margin-bottom: 15px;
-  background: White;  
-}
+
