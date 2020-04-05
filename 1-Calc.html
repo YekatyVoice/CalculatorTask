@@ -1,8 +1,16 @@
+<!-- Найти API банков рб (нб обязательно) и с их помощью перевести для 4 валют(евро, доллар, рос. рубль, бел. рубль):
+1) деньги во все валюты на сейчас
+2) деньги во все валюты по истории курсов валют-->
 <!DOCTYPE html>
 <html>
-   <head>
-   <link rel="stylesheet" type="text/css" href="CalcTask.css" />
-	 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<head>
+        <title>Калькулятор</title>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+		<link rel="stylesheet" type="text/css" href="CalcTask.css" />
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+		</script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         <script>
             var history = new Object;
             var currency = new Object;
@@ -20,40 +28,35 @@
                         currency[elem.Cur_Abbreviation] = [elem.Cur_OfficialRate, elem.Cur_Scale,elem.Cur_Name, elem.Cur_ID];
                     });
                     toWrite = "";// создаем строку, чтобы создать на странице необходимые элементы
-                  //  for(key in currency){
-                  //      toWrite += key +': <input id="'+key+'" class="curNow" type="text" textalign:"right"> x'+currency[key][1]+" "+currency[key][2]+' <br> <br>'; //инпуты связанные с валютами
-                  //  };
-				   toWrite += "<h4 id=\"historyCurHeader\" align=\"center\">Выберите период и валюту, для которых вы хотите узнать историю курса:</h4>";
-
+                    for(key in currency){
+                        toWrite += key +': <input id="'+key+'" class="curNow" type="text" textalign:"right"> x'+currency[key][1]+" "+currency[key][2]+' <br> <br>'; //инпуты связанные с валютами
+                    };
                     $("#todayCur").html(toWrite); // печатаем инпуты (начало на строке 25)
-                    
-					if(now.getMonth() < 10) month = "0"+(now.getMonth()+1); //находим текущую дату и представляем ее в необходимом для input date формате
+                    if(now.getMonth() < 10) month = "0"+(now.getMonth()+1); //находим текущую дату и представляем ее в необходимом для input date формате
                     else month = now.getMonth();
-					
                     if(now.getDate() < 10) date = "0"+now.getDate();
                     else date = now.getDate();
-					
-                    toWrite += "<input type='date' id='hisStart'  min='2016-01-01' max='"+now.getFullYear()+"-"+month+"-"+date+"'>";// обнуляем toWrite и заносим в него input date для начала отсчета истории
+                    toWrite = "<input type='date' id='hisStart'  min='2016-01-01' max='"+now.getFullYear()+"-"+month+"-"+date+"'>";// обнуляем toWrite и заносим в него input date для начала отсчета истории
                     toWrite += "<input type='date'id='hisEnd'  min='2016-01-01' max='"+now.getFullYear()+"-"+month+"-"+date+"'>";//добавляем конец отсчета истории
-                    toWrite +="<br><select id='chCur'>" //создание селекта для выбора валют
-                    for(key in currency){
-                        if(key != "BYN")toWrite += "<option value='"+currency[key][3]+"'>"+currency[key][1]+" "+currency[key][2]+"</option>" //опции селектора
-                    }
-                    toWrite +="</select>";//конец селектора
-                    toWrite+="<br><button type='button' id='showCurHistory'>Показать историю курса</button>";// кнопка "показать" историю изменения курсов валют
-                    toWrite+="<br> <div id='showHistoryCur'></div> </div>";// контейнер для вывода курсов валют
+           //         toWrite +="<select id='chCur'>" //создание селекта для выбора валют
+           //         for(key in currency){
+           //             if(key != "BYN")toWrite += "<option value='"+currency[key][3]+"'>"+currency[key][1]+" "+currency[key][2]+"</option>" //опции селектора
+            //        }
+         //           toWrite +="</select>";//конец селектора
+                    toWrite+="<button type='button' id='showCurHistory'>Показать</button>";// кнопка "показать" историю изменения курсов валют
+                    toWrite+="<div id='showHistoryCur'></div> </div>";// контейнер для вывода курсов валют
                     $("#historyCur").html(toWrite); //создаем input date x 2 select для выбора валют и кнопку запуска скрипта по выводу истории (начало заполнения toWrite - 34 строка)
 
                     $("#showCurHistory").click(function(){
                         startDate = $("#hisStart").val(); // c input #hisStart получаем дату начала
                         endDate = $("#hisEnd").val(); // c input #hisEnd получаем дату конца
                         curId =$("select").val();// с селекта получаем id валюты
-                        url ="http://www.nbrb.by/API/ExRates/Rates/Dynamics/"+curId+"?startDate="+startDate+"&endDate=" + endDate; //создаем адресс для запроса к апи
+                        url ="http://www.nbrb.by/API/ExRates/Rates/Dynamics/"+curId+"?startDate="+startDate+"&endDate="+endDate; //создаем адресс для запроса к апи
                         $.getJSON(url,function(data){ // запрос к апи нбрб
                             //toWrite = curName+"<br> <br>";// тут еще думаю как, для красоты, вывести название валюты
                             toWrite = "<ul>";// история курсов выводится в списке
                             data.forEach(element => {
-                                toWrite +="<li>"+element.Date.substring(0,10)+" "+element.Cur_OfficialRate+"</li>";// toWrite = data.Cur_OfficialRate
+                                toWrite +="<li>"+element.Date.substring(0,10)+" "+element.Cur_OfficialRate+"</li>";
                             });
                             toWrite+= "</ul>"
                             $("#showHistoryCur").html(toWrite); //печатаем все, что набросали в toWrite на чиная с 53 строки
@@ -68,96 +71,85 @@
                             return money / currency[id][0];
                         })
                     })
-                }})
+                }}) 
                     $("#showToday").click(function(){ //показать меня для сегодняшних курсов и спрятать для истории курсов
-                        $("#todayCur").show();
-                        $("#historyCur").hide();
+                        $("#table1").show();
+                        $("#historyCur, #tableHistoryCur").hide();
 
                     })
                     $("#showHistory").click(function(){// показать меня для истории курсов и спрятать для сегодняшних
-                        $("#todayCur").hide();
-                        $("#historyCur").show();
-                    })
-					$("#showHistory").click(function(){// показать меню для истории курсов и спрятать таблицу валют
                         $("#table1").hide();
-                        $("#table2").show();
+                        $("#historyCur, #tableHistoryCur").show();
                     })
-			//		$("#showToday").click(function(){// показать меню для сегодняшних курсов и спрятать таблицу для истории курсов
-            //            $("#table2").hide();
-            //            $("#table1").show();
-            //        })
-					
             });
-        </script>	 
-   </head>
-   <body>	
-	 <h2><p align="center">Онлайн конвертер валют</p></h2>
-	   <table id="table1" align="center" background-color="PowderBlue" border=1 frame="box" rules="none" bordercolor="DodgerBlue" CELLPADDING=3>
-	   
-		<caption></caption>
+        </script>
+</head>
+<body>
+	 <div id="main">
+        <button type="button" id="showToday">Конвертер валют</button>
+        <button type="button" id="showHistory">История</button>
+		<button type="button" id="showComBank">Банки</button>
+		
+        
+	 <div id="tableTodayCur">
+		 <table id="table1" align="center" background-color="PowderBlue"  frame="box" rules="none" CELLPADDING=3>
 		 <tr>
-		 <th  colspan=4>
-		     <table>
-			  <th><button type="button" class="b1" id="showToday"><b>Конвертер валют</b></button></th>
-			  <th><button type="button" class="b3"><b>Банки</b></button></th>
-			  <th><button type="button" class="b2" id="showHistory"><b>История</b></button></th>
-			 </table>
-		 </th>
-		 </tr>
-	    <tbody>
-		 <tr>
-		   <td><img src="Flag/Belarus.png" width=30></td>
+		   <td><img src="Flag/Belarus.png" width=40></td>
 		   <td><input name="currency" value="BYN - Белорусский рубль" readonly></td>
 		   <td>Br</td>
 		   <td><input id="BYN" class="curNow" type="text" name="ammount" textalign:"rigth"=""></td>
 		   </tr>
 		 <tr>
-		   <td><img src="Flag/United-States.png" width=30></td>
+		   <td><img src="Flag/United-States.png" width=40></td>
 		   <td><input name="currency" value="USD - Американский доллар" readonly></td>
 		   <td>$</td>
 		   <td><input id="USD" class="curNow" type="text" name="ammount" textalign:"right"=""></td>
 		 </tr>
 		 <tr>
-		   <td><img src="Flag/European-Union.png" width=30></td>
+		   <td><img src="Flag/European-Union.png" width=40></td>
 		   <td><input name="currency" value="EUR - Евро" readonly></td>
 		   <td>€</td>
 		   <td><input id="EUR" class="curNow" type="text" name="ammount" textalign="right"=""></td>
 		 </tr>
 		 <tr>
-		   <td><img src="Flag/Russia.png" width=30></td>
+		   <td><img src="Flag/Russia.png" width=40></td>
 		   <td><input name="currency" value="RUR - x100 Российских рублей" readonly></td>
 		   <td>₽</td>
 		   <td><input id="RUB" class="curNow"  type="text" name="ammount" textalign="right"=""></td>
 		 </tr>
 		 <tr>
-		   <td><img src="Flag/United-Kingdom.png" width=30></td>
+		   <td><img src="Flag/United-Kingdom.png" width=40></td>
 		   <td><input name="currency" value="GBP - Фунт стерлингов" readonly></td>
 		   <td>£</td>
 		   <td><input id="GBP" class="curNow"  type="text" name="ammount" textalign:"right"=""></td>
 		 </tr>
 		 <tr>
-		   <td><img src="Flag/China.png" width=30></td>
+		   <td><img src="Flag/China.png" width=40></td>
 		   <td><input name="currency" value="CNY - x10 Юаней" readonly></td>
-		   <td>¥ &nbsp</td>
+		   <td>¥ &nbsp </td>
 		   <td><input id="CNY" class="curNow" type="text" name="ammount" textalign="right"></td>
 		 </tr>
-	    </tbody>
-	   
-	   </table>
-	   <div class = "center">
-		   <table id="table2" hidden align="center" background-color="PowderBlue" border=1 frame="box" rules="none" bordercolor="DodgerBlue" CELLPADDING=3>
-			 <tr>
-				  <th><button type="button" class="b1" id="showToday"><b>Конвертер валют</b></button></th>
-				  <th><button type="button" class="b3"><b>Банки</b></button></th>
-				  <th><button type="button" class="b2" id="showHistory"><b>История</b></button></th>
-			 </tr>
-			</table>
-			
-			<div id="historyCur" hidden></div>
-			<!--button type="button" id="showToday">Show today currencies exchange</button-->
-			<!--button type="button" id="showHistory">Show history of currencies exchange</button><br> <br-->
-			<div id="todayCur" hidden></div>
-        </div>
-   </body>
+	     </table>
+	</div>
+        
+		<div id="todayCur" hidden></div>
+		<div id="tableHistoryCur" hidden>
+		<p id="pStyle">Выберите период: &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp Выберите валюту:</p>
+		
+		<div id="leftBorder"><br>c<br><br><br><br>по</div>
+		<div id="historyCur" hidden></div>
+        <div id="workButtons">
+		<span>&nbsp &nbsp &nbsp <i class="far fa-money-bill-alt fa-2x"></i><span>
+		 <select id="chCur">
+				     <option value="145"> 1 USD</option>
+					 <option value="292"> 1 EUR</option>
+					 <option value="298"> 100 RUR</option>	
+					 <option value="143"> 1 GBP</option>					 
+					 <option value="304"> 10 CNY</option>
+		 </select><br>
+		 <span><i class="fas fa-chart-line fa-5x"></i></span>
+		</div>
+	   </div>
+	   </div>
+    </body>
 </html>
-
