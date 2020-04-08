@@ -50,13 +50,23 @@
                     $("#showCurHistory").click(function(){
                         startDate = $("#hisStart").val(); // c input #hisStart получаем дату начала
                         endDate = $("#hisEnd").val(); // c input #hisEnd получаем дату конца
+						if(startDate == "" || endDate == "")
+						{
+							alert("Укажите период, за который Вы хотите получить историю курса валют");
+							return;
+						}
+						if(Date.parse(startDate) > Date.parse(endDate))
+						{
+							alert("Период указан неверно");
+							return;
+						}
                         curId =$("select").val();// с селекта получаем id валюты
                         url ="http://www.nbrb.by/API/ExRates/Rates/Dynamics/"+curId+"?startDate="+startDate+"&endDate="+endDate; //создаем адресс для запроса к апи
                         $.getJSON(url,function(data){ // запрос к апи нбрб
                             //toWrite = curName+"<br> <br>";// тут еще думаю как, для красоты, вывести название валюты
                             toWrite = "<ul>";// история курсов выводится в списке
                             data.forEach(element => {
-                                toWrite +="<li>"+element.Date.substring(0,10)+" "+element.Cur_OfficialRate+"</li>";
+                                toWrite +="<li>"+element.Date.substring(0,10)+" "+element.Cur_OfficialRate.toFixed(2)+"</li>";
                             });
                             toWrite+= "</ul>"
                             $("#showHistoryCur").html(toWrite); //печатаем все, что набросали в toWrite на чиная с 53 строки
@@ -134,7 +144,7 @@
         
 		<div id="todayCur" hidden></div>
 		<div id="tableHistoryCur" hidden>
-		<p id="pStyle">Выберите период: &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp Выберите валюту:</p>
+		<br><p id="pStyle">Выберите период: &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp  &nbsp  &nbsp &nbsp  &nbsp &nbsp Выберите валюту:</p>
 		
 		<div id="leftBorder"><br>c<br><br><br><br>по</div>
 		<div id="historyCur" hidden></div>
