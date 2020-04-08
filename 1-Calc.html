@@ -66,7 +66,7 @@
                             //toWrite = curName+"<br> <br>";// тут еще думаю как, для красоты, вывести название валюты
                             toWrite = "<ul>";// история курсов выводится в списке
                             data.forEach(element => {
-                                toWrite +="<li>"+element.Date.substring(0,10)+" "+element.Cur_OfficialRate.toFixed(2)+"</li>";
+                                toWrite +="<li>"+element.Date.substring(0,10) + ':' + '&nbsp  &nbsp' +" "+element.Cur_OfficialRate.toFixed(2)+"</li>";
                             });
                             toWrite+= "</ul>"
                             $("#showHistoryCur").html(toWrite); //печатаем все, что набросали в toWrite на чиная с 53 строки
