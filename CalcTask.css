@@ -130,7 +130,16 @@ td   {
   border-radius: 6px;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
   transition: 0.2s;
-  margin: 20px 60px 20px 60px;
+  margin: 10px 60px 40px 50px;
+}
+#showHistoryCur {
+  position: relative;
+  text-align: center;
+  width: 200px;  
+  border-style: solid 2px;
+  border-color: grey;
+  margin-left: 20px;
+  
 }
 #chCur {
   margin: 20px 20px 20px 20px;
@@ -148,15 +157,21 @@ td   {
 ul{
 	font-size: 16px;
 	font-family: 'Orienta', sans-serif;
-	position: relative;
+	margin-left: 20px;
+	text-align: center;
+	width: 180px;
+}
+li{
+	
+	text-align: center;
+	width: 180px;
 }
 
 #pStyle
   {
    font-family: 'Orienta', sans-serif;
-   margin-left: 150px;
+   margin-left: 140px;
   }
 i {
 	margin-left: 60px;
 }
-
