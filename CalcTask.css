@@ -59,7 +59,11 @@ td   {
 	height: 30px;
 	font-weight: bold;
    }	 
-	 
+#showHistoryCur 
+   {
+    margin-left: 35px;
+	
+   }	 
 #showComBank 
    {
     background: Thistle; 
