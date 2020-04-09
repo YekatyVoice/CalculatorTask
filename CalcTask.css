@@ -1,12 +1,22 @@
-input[name=currency]
-	 {
-	 background-color:WhiteSmoke;
-     width:250px;
-	 }
+#tableHistoryCur
+{
+	 background: Bisque;
+	 width:600px;	
+}
 input[name=ammount]
 	 {
 	 background-color:White;
-     width:220px;
+     width:280px;
+	 }
+input[name=AlfaCur]
+	 {
+     margin-left: 10px;
+     width:130px;
+	 background: Thistle; 
+	 }
+input[name=AmmountVal]
+	 {
+	 background: Gainsboro; 
 	 }
 
 #hisStart, #hisEnd
@@ -33,20 +43,21 @@ td   {
 #showToday 
    {
     background: PowderBlue; /* Синий цвет фона */ 
-    color: Black; /* Белые буквы */ 
+    color: Black;
     font-size: 10pt; /* Размер шрифта в пунктах */
-	width:198px;
+	width:197px;
 	height: 30px;
+	font-weight: bold;
    }
 
 #showHistory 
    {
-    background: Bisque; /* Синий цвет фона */ 
-    color: Black; /* Белые буквы */ 
+    background: Bisque;
+    color: Black;
     font-size: 10pt; /* Размер шрифта в пунктах */
-	width:198px;
+	width:197px;
 	height: 30px;
-	 
+	font-weight: bold;
    }	 
 	 
 #showComBank 
@@ -54,10 +65,18 @@ td   {
     background: Thistle; 
     color: Black; /* Белые буквы */ 
     font-size: 10pt; /* Размер шрифта в пунктах */
-	width:198px;
+	width:197px;
 	height: 30px;
+	font-weight: bold;
+	
    }
-   
+#tableBanks, #comBanks 
+   {
+	 background: Thistle; 
+	 width: 600px;  
+	 height: 250px;
+   } 
+ 
 #hisStart, #hisEnd {
   width: 240px;
   text-align: center;
@@ -69,46 +88,33 @@ td   {
   border-style: solid;
   border-color: gray;
   border-radius: 3px;
-
 }
 #hisEnd:hover, #hisStart:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
 #todayCur, #tableTodayCur,#table1
     { 
 	 background: PowderBlue; 
-	 border:1px solid gray;
-	 width: 600px; 
-
+	 width: 600px;
+	 
 	 }
 #historyCur
     { 
-	 background: Bisque; 
 	 width: 320px;
      margin-left: 4px;
 	 display: inline-block;
 	 vertical-align: middle;
-
 	 }	
-#main
-    { 
-	 border:1px solid gray;
-	 width: 602px;
-	 background: Bisque;
-	 }
-	 
+	
 #leftBorder  
     {
-	 background: Bisque; 
 	 width: 30px;
 	 height: 130px;
 	 display: inline-block;
 	 vertical-align: top;
      padding-left:15px;
-	 font-family: 'Orienta', sans-serif;
-	 
+	 font-family: 'Orienta', sans-serif; 
 	}
 #workButtons
-    {
-	 background: Bisque; 
+    { 
 	 width: 210px;
 	 height: 200px;
 	 display: inline-block;
@@ -130,18 +136,7 @@ td   {
   border-radius: 6px;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
   transition: 0.2s;
-  margin: 10px 60px 40px 50px;
-}
-#showHistoryCur {
-  position: relative;
-  text-align: center;
-  width: 200px;  
-  border-style: solid 2px;
-  border-color: grey;
-  margin-left: 20px;
-  margin-top: -20px;
-  margin-bottom: 20px;
-  
+  margin: 0px 60px 20px 60px;
 }
 #chCur {
   margin: 20px 20px 20px 20px;
@@ -159,21 +154,43 @@ td   {
 ul{
 	font-size: 16px;
 	font-family: 'Orienta', sans-serif;
-	margin-left: 20px;
-	text-align: center;
-	width: 180px;
-}
-li{
-	
-	text-align: center;
-	width: 180px;
+	position: relative;
 }
 
-#pStyle
-  {
-   font-family: 'Orienta', sans-serif;
-   margin-left: 140px;
-  }
 i {
 	margin-left: 60px;
+	margin-top: 30px;
+	
 }
+#span1 {
+	margin-left: 130px;
+	margin-top: 20px;	
+	font-family: 'Orienta', sans-serif; 
+}
+#span2 {
+	margin-left: 200px;
+	margin-top: 20px;	
+	font-family: 'Orienta', sans-serif; 
+}
+#span3 {
+	margin-left: 80px;
+	margin-top: 20px;	
+	font-family: 'Orienta', sans-serif; 
+}
+#logoAlfa {
+    width: 100px;
+	height:60px;
+	margin: 20px 0px 20px 20px;
+    border: 1px solid red;	
+    background: white;
+	display: inline-block;
+}
+
+#AlfaCurBuy {
+    width:200px;
+	margin: 20px 0px 20px 20px;	
+    display: inline-block;
+	vertical-align: top;
+
+}
+
