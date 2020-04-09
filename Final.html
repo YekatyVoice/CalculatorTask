@@ -68,7 +68,7 @@
 				var money = $(this).val() * currency[cur][0];
 				$(".curNow:not(#"+cur+")").val(function(){
 					var id =  $(this).attr("id");
-					return ((money / currency[id][0]).toFixed(2));
+					return ((money / currency[id][0]).toFixed(3));
 				})
 			})
 		}})
