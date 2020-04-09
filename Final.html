@@ -56,7 +56,7 @@
 				$.getJSON(url,function(data){ // запрос к апи нбрб
 					toWrite = "<ul>";// история курсов выводится в списке
 					data.forEach(element => {
-						toWrite +="<li>"+element.Date.substring(0,10) + ':' + '&nbsp  &nbsp' +" "+element.Cur_OfficialRate.toFixed(2)+ ' &nbsp  BYN ' + "</li>";
+						toWrite +="<li>"+element.Date.substring(0,10) + ':' + '&nbsp  &nbsp' +" "+element.Cur_OfficialRate.toFixed(3)+ ' &nbsp  BYN ' + "</li>";
 					});
 					toWrite+= "</ul>"
 					$("#showHistoryCur").html(toWrite); //печатаем все, что набросали в toWrite на чиная с 53 строки
@@ -102,48 +102,48 @@
 						money = $(this).val();
 						switch ($(this).attr("id")) {
 							case "alphaBYN":
-								$('#alphaEUR').val((money / eurCur).toFixed(2));
-								$('#alphaUSD').val((money / usdCur).toFixed(2));
-								$('#alphaRUB').val((money / rubCur).toFixed(2));
+								$('#alphaEUR').val((money / eurCur).toFixed(3));
+								$('#alphaUSD').val((money / usdCur).toFixed(3));
+								$('#alphaRUB').val((money / rubCur).toFixed(3));
                                 $('#alphaEURSell').val((money / eurCurSell).toFixed(2));
-								$('#alphaUSDSell').val((money / usdCurSell).toFixed(2));
-								$('#alphaRUBSell').val((money / rubCurSell).toFixed(2));
+								$('#alphaUSDSell').val((money / usdCurSell).toFixed(3));
+								$('#alphaRUBSell').val((money / rubCurSell).toFixed(3));
 								break;
 							case "alphaEUR":
 								money *= eurCur;
 								$('#alphaBYN').val(money);
-								$('#alphaUSD').val((money / usdCur).toFixed(2));
-								$('#alphaRUB').val((money / rubCur).toFixed(2));
+								$('#alphaUSD').val((money / usdCur).toFixed(3));
+								$('#alphaRUB').val((money / rubCur).toFixed(3));
 								break;
 							case "alphaUSD":
 								money *= usdCur;
 								$('#alphaBYN').val(money);
-								$('#alphaEUR').val((money / usdEur).toFixed(2));
-								$('#alphaRUB').value((money / rubCur).toFixed(2));
+								$('#alphaEUR').val((money / usdEur).toFixed(3));
+								$('#alphaRUB').value((money / rubCur).toFixed(3));
 								break;
 							case "alphaRUB":
 								money *= rubCur;
 								$('#alphaBYN').val(money);
-								$('#alphaUSD').val((money / usdCur).toFixed(2));
-								$('#alphaEUR').val((money / eurCur).toFixed(2));
+								$('#alphaUSD').val((money / usdCur).toFixed(3));
+								$('#alphaEUR').val((money / eurCur).toFixed(3));
 								break;
                             case "alphaEURSell":
     							money *= eurCurSell;
     							$('#alphaBYN').val(money);
-    							$('#alphaUSD').val((money / usdCurSell).toFixed(2));
-    							$('#alphaRUB').val((money / rubCurSell).toFixed(2));
+    							$('#alphaUSD').val((money / usdCurSell).toFixed(3));
+    							$('#alphaRUB').val((money / rubCurSell).toFixed(3));
     							break;
     						case "alphaUSDSell":
     							money *= usdCurSell;
     							$('#alphaBYN').val(money);
-    							$('#alphaEUR').val((money / usdEurSell).toFixed(2));
-    							$('#alphaRUB').value((money / rubCurSell).toFixed(2));
+    							$('#alphaEUR').val((money / usdEurSell).toFixed(3));
+    							$('#alphaRUB').value((money / rubCurSell).toFixed(3));
     							break;
     						case "alphaRUBSell":
     							money *= rubCurSell;
     							$('#alphaBYN').val(money);
-    							$('#alphaUSD').val((money / usdCurSell).toFixed(2));
-    							$('#alphaEUR').val((money / eurCurSell).toFixed(2));
+    							$('#alphaUSD').val((money / usdCurSell).toFixed(3));
+    							$('#alphaEUR').val((money / eurCurSell).toFixed(3));
     							break;
 						}
 					})
